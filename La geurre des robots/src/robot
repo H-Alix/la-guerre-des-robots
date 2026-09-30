@@ -1,0 +1,35 @@
+public class robot {
+    private final String robotName;
+    private int positionX = 0;
+    private int positionY = 0;
+    private final String robotVersion;
+
+    public robot(String p_name, String p_version) {
+        this.robotName = p_name;
+        this.robotVersion = p_version;
+    }
+7
+    public void SetPositionX(int p_posX){
+        this.positionX = p_posX;
+    }
+
+    public void SetPositionY(int p_posY) {
+        this.positionY = p_posY;
+    }
+
+    public int GetPositionX() {
+        return(positionX);
+    }
+
+    public int GetPositionY() {
+        return(poisitionY);
+    }
+
+    public String GetRobotName() {
+        return(this.robotName);
+    }
+
+    public String GetRobotVersion(){
+        return(this.robotVersion);
+    }
+}

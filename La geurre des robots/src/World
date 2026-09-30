@@ -1,0 +1,7 @@
+public class world {
+    private final int xSize;
+    private final int ySize;
+    
+}
+
+
