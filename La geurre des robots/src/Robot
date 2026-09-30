@@ -82,3 +82,4 @@ public class Robot {
         return(this.positionY + mvtY);
     }
 }
+
