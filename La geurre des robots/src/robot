@@ -63,7 +63,7 @@ public class robot {
     }
 
     public void ActionMvt(World world) {
-        if (this.poisitionY + this.mvtY > world.minY || this.poisitionY + this.mvtY < world.maxY || this.positionX + mvtX > world.minX || this.positionX + mvtX < world.maxX) {
+        if (this.positionY + this.mvtY > world.minY || this.positionY + this.mvtY < world.maxY || this.positionX + mvtX > world.minX || this.positionX + mvtX < world.maxX) {
             RobotDeplacement();
         } else {
             System.out.println("Le robot " + this.robotName + "Ne peut plus avancer car il a atteint la world border");
