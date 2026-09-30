@@ -1,4 +1,20 @@
 public class Main
 {
-    World(10,10,10,10);
+    public static void main(String[] args){
+        World Monde1 = new World(-10, 10, -10, 10);
+        Robot Robot1 = Robot.CreateRobot("Devastator", "1.12", 1,1, Monde1, "l'Omnimessie");
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1);
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+        Robot1.ActionMvt(Monde1); 
+    }
 }
