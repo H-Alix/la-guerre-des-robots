@@ -3,10 +3,16 @@ public class robot {
     private int positionX = 0;
     private int positionY = 0;
     private final String robotVersion;
+    private static int COMPTEUR =0;
+    private int mvtX;
+    private int mvtY;
 
-    public robot(String p_name, String p_version) {
-        this.robotName = p_name;
+    public robot(String p_name, String p_version, int p_mvtX, int p_mvtY) {
+        COMPTEUR ++;
+        this.robotName = p_name+COMPTEUR;
         this.robotVersion = p_version;
+        this.mvtX = p_mvtX;
+        this.mvtY = p_mvtY;
     }
 7
     public void SetPositionX(int p_posX){
@@ -32,4 +38,18 @@ public class robot {
     public String GetRobotVersion(){
         return(this.robotVersion);
     }
+
+    public void RobotDeplacement() {
+        this.poisitionY -= 1;
+        this.positionX +=1;
+    }
+
+    public void CreateRobot(Sting p_name, String p_version){
+        if (p_name == null || p_name.length() < 5) {
+            System.out.println("Nom trop court");
+            } else {
+                robot(p_name, p_version);
+        }
+    }
+
 }
