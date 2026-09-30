@@ -8,8 +8,9 @@ public class Robot {
     private final int mvtY;
     private World worldName;
     private String creatorName;
+    private static int HP;
 
-    public Robot(String p_name, String p_version, int p_mvtX, int p_mvtY, World p_world, String p_creator) {
+    public Robot(String p_name, String p_version, int p_mvtX, int p_mvtY, World p_world, String p_creator, int p_HP) {
         COMPTEUR ++;
         this.robotName = p_name+COMPTEUR;
         this.robotVersion = p_version;
@@ -17,6 +18,8 @@ public class Robot {
         this.mvtY = p_mvtY;
         this.worldName = p_world;
         this.creatorName = p_creator;
+        this.HP = p_HP;
+        p_world.AddRobot(this);
     }
 
     public void SetPositionX(int p_posX){
@@ -56,12 +59,12 @@ public class Robot {
         return(this.mvtY);
     }
 
-    public static Robot CreateRobot(String p_name, String p_version, int p_mvtX, int p_mvtY, World p_world, String p_createur) {
+    public static Robot CreateRobot(String p_name, String p_version, int p_mvtX, int p_mvtY, World p_world, String p_createur, int p_HP) {
     if (p_name == null || p_name.length() < 5) {
         System.out.println("Nom trop court");
         return null;
     }
-    return new Robot(p_name, p_version, p_mvtX, p_mvtY, p_world, p_createur);
+    return new Robot(p_name, p_version, p_mvtX, p_mvtY, p_world, p_createur, p_HP);
     }
 
     public void ActionMvt(World world) {
@@ -70,5 +73,12 @@ public class Robot {
         } else {
             System.out.println("Le robot " + this.robotName + "Ne peut plus avancer car il a atteint la world border");
         }
+    }
+
+    public int GetNextX(){
+        return(this.positionX + mvtX);
+    }
+    public int GetNextY() {
+        return(this.positionY + mvtY);
     }
 }
