@@ -1,4 +1,4 @@
-public class robot {
+public class Robot {
     private final String robotName;
     private int positionX = 0;
     private int positionY = 0;
@@ -6,17 +6,19 @@ public class robot {
     private static int COMPTEUR =0;
     private final int mvtX;
     private final int mvtY;
-    private String worldName;
+    private World worldName;
+    private String creatorName;
 
-    public robot(String p_name, String p_version, int p_mvtX, int p_mvtY, String p_world) {
+    public Robot(String p_name, String p_version, int p_mvtX, int p_mvtY, World p_world, String p_creator) {
         COMPTEUR ++;
         this.robotName = p_name+COMPTEUR;
         this.robotVersion = p_version;
         this.mvtX = p_mvtX;
         this.mvtY = p_mvtY;
         this.worldName = p_world;
+        this.creatorName = p_creator;
     }
-7
+
     public void SetPositionX(int p_posX){
         this.positionX = p_posX;
     }
@@ -54,16 +56,16 @@ public class robot {
         return(this.mvtY);
     }
 
-    public void CreateRobot(String p_name, String p_version, int p_mvtX, int p_mvtY, String p_world){
-        if (p_name == null || p_name.length() < 5) {
-            System.out.println("Nom trop court");
-            } else {
-                robot(p_name, p_version, p_mvtX, p_mvtY, p_world);
-        }
+    public static Robot CreateRobot(String p_name, String p_version, int p_mvtX, int p_mvtY, World p_world, String p_createur) {
+    if (p_name == null || p_name.length() < 5) {
+        System.out.println("Nom trop court");
+        return null;
+    }
+    return new Robot(p_name, p_version, p_mvtX, p_mvtY, p_world, p_createur);
     }
 
     public void ActionMvt(World world) {
-        if (this.positionY + this.mvtY > world.minY || this.positionY + this.mvtY < world.maxY || this.positionX + mvtX > world.minX || this.positionX + mvtX < world.maxX) {
+        if (this.positionY + this.mvtY > world.getMinY() && this.positionY + this.mvtY < world.getMaxY() && this.positionX + mvtX > world.getMinX() &&  this.positionX + mvtX < world.getMaxX()) {
             RobotDeplacement();
         } else {
             System.out.println("Le robot " + this.robotName + "Ne peut plus avancer car il a atteint la world border");
