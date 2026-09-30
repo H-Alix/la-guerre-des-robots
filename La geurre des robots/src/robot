@@ -4,15 +4,17 @@ public class robot {
     private int positionY = 0;
     private final String robotVersion;
     private static int COMPTEUR =0;
-    private int mvtX;
-    private int mvtY;
+    private final int mvtX;
+    private final int mvtY;
+    private String worldName;
 
-    public robot(String p_name, String p_version, int p_mvtX, int p_mvtY) {
+    public robot(String p_name, String p_version, int p_mvtX, int p_mvtY, String p_world) {
         COMPTEUR ++;
         this.robotName = p_name+COMPTEUR;
         this.robotVersion = p_version;
         this.mvtX = p_mvtX;
         this.mvtY = p_mvtY;
+        this.worldName = p_world;
     }
 7
     public void SetPositionX(int p_posX){
@@ -44,7 +46,15 @@ public class robot {
         this.positionX += mvtX;
     }
 
-    public void CreateRobot(Sting p_name, String p_version){
+    public int GetMvtX() {
+        return(this.mvtX);
+    }
+
+    public int GetMvtY() {
+        return(this.mvtY);
+    }
+
+    public void CreateRobot(String p_name, String p_version){
         if (p_name == null || p_name.length() < 5) {
             System.out.println("Nom trop court");
             } else {
@@ -52,5 +62,13 @@ public class robot {
         }
     }
 
+    public void ActionMvt(World world) {
+        if (this.poisitionY + this.mvtY > world.minY || this.poisitionY + this.mvtY < world.maxY || this.positionX + mvtX > world.minX || this.positionX + mvtX < world.maxX) {
+            RobotDeplacement();
+        } else {
+            System.out.println("Le robot " + this.robotName + "Ne peut plus avancer car il a atteint la world border");
+        }
+    }
 }
+
 
