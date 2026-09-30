@@ -1,0 +1,4 @@
+public class Main
+{
+    World(10,10,10,10);
+}

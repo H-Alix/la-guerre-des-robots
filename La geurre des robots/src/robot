@@ -30,7 +30,7 @@ public class robot {
     }
 
     public int GetPositionY() {
-        return(poisitionY);
+        return(positionY);
     }
 
     public String GetRobotName() {
@@ -42,7 +42,7 @@ public class robot {
     }
 
     public void RobotDeplacement() {
-        this.poisitionY += mvtY;
+        this.positionY += mvtY;
         this.positionX += mvtX;
     }
 
@@ -54,11 +54,11 @@ public class robot {
         return(this.mvtY);
     }
 
-    public void CreateRobot(String p_name, String p_version){
+    public void CreateRobot(String p_name, String p_version, int p_mvtX, int p_mvtY, String p_world){
         if (p_name == null || p_name.length() < 5) {
             System.out.println("Nom trop court");
             } else {
-                robot(p_name, p_version);
+                robot(p_name, p_version, p_mvtX, p_mvtY, p_world);
         }
     }
 
@@ -70,5 +70,3 @@ public class robot {
         }
     }
 }
-
-
