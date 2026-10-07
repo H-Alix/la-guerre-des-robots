@@ -1,0 +1,13 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+public class TestEVA {
+    @Test
+    
+    void CreateRobotEVA (){
+        World monde = new World(-10,10,-10, 10);
+        RobotEVA EvaLemoine = RobotEVA.CreateRobotEVA("EvaLemoine", "v1", monde, 100, DamageTypes.MAGIQUE);
+        assertTrue(EvaLemoine!= null);
+        assertTrue(EvaLemoine.GetMvtX()==2);
+        assertTrue(EvaLemoine.GetMvtY()==-2);
+      }  
+    }
