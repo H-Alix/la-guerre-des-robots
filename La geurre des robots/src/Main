@@ -2,8 +2,8 @@ public class Main
 {
     public static void main(String[] args){
         World Monde1 = new World(-10, 10, -10, 10);
-        Robot Robot1 = Robot.CreateRobot("Devastator", "1.12", -1,1, Monde1, "l'Omnimessie", 10);
-        Robot Robot2 = Robot.CreateRobot("STOMPA", "117", 1,1, Monde1, "Gork", 10);
+        Robolix Robot1 = Robolix.CreateRobolix("Devastator", "1.12", Monde1, 10, DamageTypes.MAGIQUE);
+        Robot Robot2 = Robot.CreateRobot("STOMPA", "117", Monde1, 10, DamageTypes.PHYSIQUE);
 
   
 
