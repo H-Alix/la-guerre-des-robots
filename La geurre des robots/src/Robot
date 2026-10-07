@@ -1,3 +1,5 @@
+
+
 public class Robot {
     private final String robotName;
     private int positionX = 0;
@@ -20,8 +22,8 @@ public class Robot {
         this.HP = p_HP;
         p_world.AddRobot(this);
         this.DmgType = p_dmg;
-        // this.positionX = (int) (Math.random() * 21) - 10;
-        // this.positionY = (int) (Math.random() * 21) - 10;
+        this.positionX = (int) (Math.random() * 21) - 10;
+        this.positionY = (int) (Math.random() * 21) - 10;
     }
 
     
@@ -126,3 +128,5 @@ public class Robot {
         return (this.alive);
     }
 }
+
+
