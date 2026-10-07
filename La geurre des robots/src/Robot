@@ -9,7 +9,7 @@ public class Robot {
     protected int mvtX;
     protected int mvtY;
     private World worldName;
-    private static int HP;
+    private int HP;
     private DamageTypes DmgType;
     private boolean alive = true;
     protected int Damage = 5;
@@ -115,18 +115,23 @@ public class Robot {
 
 
     public void RobotAttack (Robot p_cible){
-        if (this.DmgType == DamageTypes.PHYSIQUE){
-            p_cible.DamageBot(this.Damage);
-        } else if (p_cible.DmgType == DamageTypes.MAGIQUE && this.DmgType == DamageTypes.MAGIQUE) {
+        if (p_cible.DmgType == DamageTypes.MAGIQUE && this.DmgType == DamageTypes.MAGIQUE) {
             System.out.println("Les deux robots sont magiques, les dégats s'annulent !");
         } else if (p_cible.DmgType == DamageTypes.POSITRONNIQUE && this.DmgType == DamageTypes.POSITRONNIQUE) {
             p_cible.DamageBot(this.Damage*2);
+        } else {
+            p_cible.DamageBot(this.Damage);
         }
     }
 
     public boolean GetLive() {
         return (this.alive);
     }
+
+    public int GetHP(){
+        return(this.HP);
+    }
 }
+
 
 
