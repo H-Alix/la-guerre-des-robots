@@ -81,5 +81,12 @@ public class Robot {
     public int GetNextY() {
         return(this.positionY + mvtY);
     }
-}
 
+    public void DamageBot(int p_dgt){
+        this.HP = this.HP - p_dgt;
+    }
+
+    public void HealBot (int p_heal){
+        this.HP = this.HP + p_heal;
+    }
+}
