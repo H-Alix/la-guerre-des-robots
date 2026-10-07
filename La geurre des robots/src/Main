@@ -11,6 +11,11 @@ public class Main
         Bonus bonus2 = new Bonus(Monde1);
         Bonus bonus3 = new Bonus(Monde1);
         Bonus bonus4 = new Bonus(Monde1);
+        Trap Trap1 = new Trap(Monde1);
+        Trap Trap2 = new Trap(Monde1);
+        Trap Trap3 = new Trap(Monde1);
+        Trap Trap4 = new Trap(Monde1);
+
         Monde1.LaunchWar();
 
         
