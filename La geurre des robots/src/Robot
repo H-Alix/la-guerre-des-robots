@@ -1,5 +1,3 @@
-
-
 public class Robot {
     private final String robotName;
     private int positionX = 0;
@@ -10,6 +8,7 @@ public class Robot {
     protected int mvtY;
     private World worldName;
     private int HP;
+    private int HPMAX;
     private DamageTypes DmgType;
     private boolean alive = true;
     protected int Damage = 5;
@@ -20,10 +19,11 @@ public class Robot {
         this.robotVersion = p_version;
         this.worldName = p_world;
         this.HP = p_HP;
+        this.HPMAX = p_HP;
         p_world.AddRobot(this);
         this.DmgType = p_dmg;
-        this.positionX = (int) (Math.random() * 21) - 10;
-        this.positionY = (int) (Math.random() * 21) - 10;
+        // this.positionX = (int) (Math.random() * 21) - 10;
+        // this.positionY = (int) (Math.random() * 21) - 10;
     }
 
     
@@ -57,10 +57,7 @@ public class Robot {
         return(this.robotVersion);
     }
 
-    public void RobotDeplacement() {
-        this.positionY += mvtY;
-        this.positionX += mvtX;
-    }
+   
 
     public int GetMvtX() {
         return(this.mvtX);
@@ -68,6 +65,28 @@ public class Robot {
 
     public int GetMvtY() {
         return(this.mvtY);
+    }
+
+    
+
+    public int GetNextX(){
+        return(this.positionX + mvtX);
+    }
+    public int GetNextY() {
+        return(this.positionY + mvtY);
+    }
+
+    public boolean GetLive() {
+        return (this.alive);
+    }
+
+    public int GetHP(){
+        return(this.HP);
+    }
+
+    public void RobotDeplacement() {
+        this.positionY += mvtY;
+        this.positionX += mvtX;
     }
 
     public static Robot CreateRobot(String p_name, String p_version, World p_world, int p_HP, DamageTypes p_dmg) {
@@ -89,23 +108,23 @@ public class Robot {
         }
     }
 
-    public int GetNextX(){
-        return(this.positionX + mvtX);
-    }
-    public int GetNextY() {
-        return(this.positionY + mvtY);
-    }
+    
 
     public void DamageBot(int p_dgt){
         this.HP = this.HP - p_dgt;
         if (this.HP <= 0){
             this.alive = false;
+            this.SetPositionX(11);
+            this.SetPositionY(11);
             System.out.println(this.robotName + " est mort");
         }
     }
 
     public void HealBot (int p_heal){
         this.HP = this.HP + p_heal;
+        if(this.HP > this.HPMAX){
+            this.HP = this.HPMAX;
+        }
     }
 
     public void reverseMvt(){
@@ -124,14 +143,9 @@ public class Robot {
         }
     }
 
-    public boolean GetLive() {
-        return (this.alive);
-    }
 
-    public int GetHP(){
-        return(this.HP);
-    }
 }
+
 
 
 
