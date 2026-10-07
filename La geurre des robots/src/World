@@ -15,6 +15,7 @@ public class World {
         this.minY = minY;
         this.maxY = maxY;
     }
+
    
     public int getMinX() {
         return minX;
