@@ -1,4 +1,5 @@
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,23 +31,35 @@ public class World {
         return maxY;
     }
 
-    public void LaunchWar(){//World world) {
+    public void LaunchWar(){
         int Xcoords;
         int Ycoords;
-
+        for (int i = 0; i < 10; i++) {
             for (Robot robot : listRobots){
-                Robot Cible = null;
-                Xcoords = robot.GetNextX();
-                Ycoords = robot.GetNextX();
-                for (Robot robotcible : listRobots){
-                    if (robotcible.GetPositionX() == Xcoords && robotcible.GetPositionY() == Ycoords){
-                        Cible = robotcible;
-                        break;
+                if (robot.GetLive()== true){
+                    Robot Cible = null;
+                    Xcoords = robot.GetNextX();
+                    Ycoords = robot.GetNextX();
+                    for (Robot robotcible : listRobots){
+                        if (robotcible.GetPositionX() == Xcoords && robotcible.GetPositionY() == Ycoords){
+                            Cible = robotcible;
+                            break;
+                        }
                     }
+                    if (Cible == null){
+                        robot.ActionMvt(this);
+                        System.out.println("La position du robot : " + robot.GetRobotName() + " est : X - " + robot.GetPositionX() + ", Y - " + robot.GetPositionY());
+                    } else if(Cible.GetLive() == true ) {
+                        robot.RobotAttack(Cible);
+                        if(Cible.GetLive()== false){
+                            robot.ActionMvt(this);
+                            System.out.println("La position du robot : " + robot.GetRobotName() + " est : X - " + robot.GetPositionX() + ", Y - " + robot.GetPositionY());
+                        }
+                    }
+                    
                 }
-                // Integrer attauqe
-                robot.ActionMvt(this);
             }
+        }
     }
 
     public void AddRobot(Robot robot){
