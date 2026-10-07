@@ -6,11 +6,11 @@ public class Robot {
     private static int COMPTEUR =0;
     protected int mvtX;
     protected int mvtY;
-    protected int mvtX2;
-    protected int mvtY2;
     private World worldName;
     private static int HP;
     private DamageTypes DmgType;
+    private boolean alive = true;
+    protected int Damage = 5;
 
     public Robot(String p_name, String p_version, World p_world, int p_HP, DamageTypes p_dmg) {
         COMPTEUR ++;
@@ -20,6 +20,8 @@ public class Robot {
         this.HP = p_HP;
         p_world.AddRobot(this);
         this.DmgType = p_dmg;
+        // this.positionX = (int) (Math.random() * 21) - 10;
+        // this.positionY = (int) (Math.random() * 21) - 10;
     }
 
     
@@ -79,7 +81,7 @@ public class Robot {
         if (this.positionY + this.mvtY > world.getMinY() && this.positionY + this.mvtY < world.getMaxY() && this.positionX + mvtX > world.getMinX() &&  this.positionX + mvtX < world.getMaxX()) {
             RobotDeplacement();
         } else {
-            System.out.println(this.robotName + "a fait demi tour");
+            System.out.println(this.robotName + " a fait demi tour");
             this.reverseMvt();
             RobotDeplacement();
         }
@@ -94,7 +96,10 @@ public class Robot {
 
     public void DamageBot(int p_dgt){
         this.HP = this.HP - p_dgt;
-        // ajouter mort a 0hp
+        if (this.HP <= 0){
+            this.alive = false;
+            System.out.println(this.robotName + " est mort");
+        }
     }
 
     public void HealBot (int p_heal){
@@ -109,12 +114,15 @@ public class Robot {
 
     public void RobotAttack (Robot p_cible){
         if (this.DmgType == DamageTypes.PHYSIQUE){
-            p_cible.DamageBot(1);
+            p_cible.DamageBot(this.Damage);
         } else if (p_cible.DmgType == DamageTypes.MAGIQUE && this.DmgType == DamageTypes.MAGIQUE) {
             System.out.println("Les deux robots sont magiques, les dégats s'annulent !");
         } else if (p_cible.DmgType == DamageTypes.POSITRONNIQUE && this.DmgType == DamageTypes.POSITRONNIQUE) {
-            p_cible.DamageBot(2);
+            p_cible.DamageBot(this.Damage*2);
         }
     }
 
+    public boolean GetLive() {
+        return (this.alive);
+    }
 }
