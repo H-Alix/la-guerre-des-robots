@@ -22,8 +22,8 @@ public class Robot {
         this.HPMAX = p_HP;
         p_world.AddRobot(this);
         this.DmgType = p_dmg;
-        // this.positionX = (int) (Math.random() * 21) - 10;
-        // this.positionY = (int) (Math.random() * 21) - 10;
+        this.positionX = (int) (Math.random() * 21) - 10;
+        this.positionY = (int) (Math.random() * 21) - 10;
     }
 
     
