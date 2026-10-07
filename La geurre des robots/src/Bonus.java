@@ -1,22 +1,20 @@
 public class Bonus {
-    private int positionX;
-    private int positionY;
-    private int valeurBonusVie;
-    private int QuantiteBonus;
+    private int positionX = 1;
+    private int positionY = 1;
+    protected int valeurBonus;
+    protected int QuantiteBonus;
     private boolean on = true;
 
     public Bonus(World p_world){
         this.positionX = (int) (Math.random() * 21) - 10; 
         this.positionY = (int) (Math.random() * 21) - 10;
-        this.valeurBonusVie = (int) (Math.random() * 11);
+        this.valeurBonus = (int) (Math.random() * 11);
         p_world.AddBonus(this);
     }
 
     public void effet(Robot p_robot){
         if (this.on == true){
-        p_robot.HealBot(valeurBonusVie);
-        this.QuantiteBonus -=1;
-        System.out.println("Le robot " + p_robot.GetRobotName() + " a été soigné de " + this.valeurBonusVie + " points de vie");
+            AplyEffects(p_robot);
         if (this.QuantiteBonus <= 0){
             this.on = false;
         }
@@ -29,5 +27,13 @@ public class Bonus {
 
     public int GetY(){
         return(this.positionY);
+    }
+
+    public void AplyEffects(Robot p_robot){
+        if(valeurBonus > 0){
+                p_robot.HealBot(valeurBonus);
+                this.QuantiteBonus -=1;
+                System.out.println("Le robot " + p_robot.GetRobotName() + " a été soigné de " + this.valeurBonus + " points de vie");
+        }
     }
 }
