@@ -1,34 +1,92 @@
-public class robot {
+public class Robot {
     private final String robotName;
     private int positionX = 0;
     private int positionY = 0;
     private final String robotVersion;
+    private static int COMPTEUR =0;
+    private final int mvtX;
+    private final int mvtY;
+    private World worldName;
+    private String creatorName;
+    private static int HP;
 
-    public robot(String p_name, String p_version) {
-        this.robotName = p_name;
+    public Robot(String p_name, String p_version, int p_mvtX, int p_mvtY, World p_world, String p_creator, int p_HP) {
+        COMPTEUR ++;
+        this.robotName = p_name+COMPTEUR;
         this.robotVersion = p_version;
+        this.mvtX = p_mvtX;
+        this.mvtY = p_mvtY;
+        this.worldName = p_world;
+        this.creatorName = p_creator;
+        this.HP = p_HP;
+        p_world.AddRobot(this);
     }
 
-    public void setpositionX(int p_positionX) {
-        this.positionX = p_positionX;
-    }
-    public int getpositionX() {
-        return this.positionX;
+    public void SetPositionX(int p_posX){
+        this.positionX = p_posX;
     }
 
-    public void setpositionY(int p_positionY) {
-        this.positionY = p_positionY;
-    }
-    public int getpositionY() {
-        return this.positionY;
+    public void SetPositionY(int p_posY) {
+        this.positionY = p_posY;
     }
 
-    public void getrobotName() {
-        System.out.println("Robot Name: " + this.robotName);
+    public int GetPositionX() {
+        return(positionX);
     }
 
-    public void getrobotVersion() {
-        System.out.println("Robot Version: " + this.robotVersion);
+    public int GetPositionY() {
+        return(positionY);
     }
 
+    public String GetRobotName() {
+        return(this.robotName);
+    }
+
+    public String GetRobotVersion(){
+        return(this.robotVersion);
+    }
+
+    public void RobotDeplacement() {
+        this.positionY += mvtY;
+        this.positionX += mvtX;
+    }
+
+    public int GetMvtX() {
+        return(this.mvtX);
+    }
+
+    public int GetMvtY() {
+        return(this.mvtY);
+    }
+
+    public static Robot CreateRobot(String p_name, String p_version, int p_mvtX, int p_mvtY, World p_world, String p_createur, int p_HP) {
+    if (p_name == null || p_name.length() < 5) {
+        System.out.println("Nom trop court");
+        return null;
+    }
+    return new Robot(p_name, p_version, p_mvtX, p_mvtY, p_world, p_createur, p_HP);
+    }
+
+    public void ActionMvt(World world) {
+        if (this.positionY + this.mvtY > world.getMinY() && this.positionY + this.mvtY < world.getMaxY() && this.positionX + mvtX > world.getMinX() &&  this.positionX + mvtX < world.getMaxX()) {
+            RobotDeplacement();
+        } else {
+            System.out.println("Le robot " + this.robotName + "Ne peut plus avancer car il a atteint la world border");
+        }
+    }
+
+    public int GetNextX(){
+        return(this.positionX + mvtX);
+    }
+    public int GetNextY() {
+        return(this.positionY + mvtY);
+    }
+
+    public void DamageBot(int p_dgt){
+        this.HP = this.HP - p_dgt;
+    }
+
+    public void HealBot (int p_heal){
+        this.HP = this.HP + p_heal;
+    }
 }
