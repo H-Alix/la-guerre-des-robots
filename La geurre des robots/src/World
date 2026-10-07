@@ -29,12 +29,12 @@ public class World {
         return maxY;
     }
 
-    public LaunchWar(World world) {
+    public void LaunchWar(){//World world) {
         int Xcoords;
         int Ycoords;
-        Robot Cible = null;
-        for (int i = 0; i < 10; i++) {
+
             for (Robot robot : listRobots){
+                Robot Cible = null;
                 Xcoords = robot.GetNextX();
                 Ycoords = robot.GetNextX();
                 for (Robot robotcible : listRobots){
@@ -43,13 +43,17 @@ public class World {
                         break;
                     }
                 }
-                Integrer attauqe
+                // Integrer attauqe
+                robot.ActionMvt(this);
             }
-        }
     }
 
     public void AddRobot(Robot robot){
         listRobots.add(robot);
+    }
+
+    public List<Robot> GetListRobots (){
+        return(this.listRobots);
     }
 
 }
