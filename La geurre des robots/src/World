@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +8,7 @@ public class World {
     private final int minY;
     private final int maxY;
     private final List<Robot> listRobots = new ArrayList<>();
+    private final List<Bonus> listBonus = new ArrayList<>();
 
     public World(int minX, int maxX, int minY, int maxY) {
         this.minX = minX;
@@ -48,17 +48,19 @@ public class World {
                     }
                     if (Cible == null){
                         robot.ActionMvt(this);
-                        System.out.println("La position du robot : " + robot.GetRobotName() + " est : X - " + robot.GetPositionX() + ", Y - " + robot.GetPositionY());
+                        System.out.println("La position du robot : " + robot.GetRobotName() + " est : X = " + robot.GetPositionX() + ", Y = " + robot.GetPositionY());
                     } else if(Cible.GetLive() == true ) {
                         robot.RobotAttack(Cible);
                         if(Cible.GetLive()== false){
                             robot.ActionMvt(this);
-                            System.out.println("La position du robot : " + robot.GetRobotName() + " est : X - " + robot.GetPositionX() + ", Y - " + robot.GetPositionY());
+                            System.out.println("La position du robot : " + robot.GetRobotName() + " est : X = " + robot.GetPositionX() + ", Y = " + robot.GetPositionY());
                         }
                     }
                     
                 }
+                CaseBonus(robot);
             }
+            
         }
     }
 
@@ -68,6 +70,18 @@ public class World {
 
     public List<Robot> GetListRobots (){
         return(this.listRobots);
+    }
+
+    public void AddBonus(Bonus p_bonus){
+        listBonus.add(p_bonus);
+    }
+
+    public void CaseBonus(Robot p_robot){
+        for (Bonus bonus : listBonus){
+            if (p_robot.GetPositionX() == bonus.GetX() && p_robot.GetPositionY() == bonus.GetY()){
+                bonus.effet(p_robot);
+            }
+        }
     }
 
 }
