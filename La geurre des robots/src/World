@@ -39,7 +39,7 @@ public class World {
                 if (robot.GetLive()== true){
                     Robot Cible = null;
                     Xcoords = robot.GetNextX();
-                    Ycoords = robot.GetNextX();
+                    Ycoords = robot.GetNextY();
                     for (Robot robotcible : listRobots){
                         if (robotcible.GetPositionX() == Xcoords && robotcible.GetPositionY() == Ycoords){
                             Cible = robotcible;
