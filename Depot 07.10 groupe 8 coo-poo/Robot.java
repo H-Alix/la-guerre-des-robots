@@ -1,0 +1,151 @@
+public class Robot {
+    private final String robotName;
+    private int positionX = 0;
+    private int positionY = 0;
+    private final String robotVersion;
+    private static int COMPTEUR =0;
+    protected int mvtX;
+    protected int mvtY;
+    private World worldName;
+    private int HP;
+    private int HPMAX;
+    private DamageTypes DmgType;
+    private boolean alive = true;
+    protected int Damage = 5;
+
+    public Robot(String p_name, String p_version, World p_world, int p_HP, DamageTypes p_dmg) {
+        COMPTEUR ++;
+        this.robotName = p_name+COMPTEUR;
+        this.robotVersion = p_version;
+        this.worldName = p_world;
+        this.HP = p_HP;
+        this.HPMAX = p_HP;
+        p_world.AddRobot(this);
+        this.DmgType = p_dmg;
+        this.positionX = (int) (Math.random() * 21) - 10;
+        this.positionY = (int) (Math.random() * 21) - 10;
+    }
+
+    
+    public void RobotDesc(){
+        System.out.println("Robot name : " + this.robotName);
+        System.out.println("Robot health : " + this.HP);
+        System.out.println("Robot position - X : " + this.positionX + "Y : " + this.positionY);  
+    }
+
+    public void SetPositionX(int p_posX){
+        this.positionX = p_posX;
+    }
+
+    public void SetPositionY(int p_posY) {
+        this.positionY = p_posY;
+    }
+
+    public int GetPositionX() {
+        return(positionX);
+    }
+
+    public int GetPositionY() {
+        return(positionY);
+    }
+
+    public String GetRobotName() {
+        return(this.robotName);
+    }
+
+    public String GetRobotVersion(){
+        return(this.robotVersion);
+    }
+
+   
+
+    public int GetMvtX() {
+        return(this.mvtX);
+    }
+
+    public int GetMvtY() {
+        return(this.mvtY);
+    }
+
+    
+
+    public int GetNextX(){
+        return(this.positionX + mvtX);
+    }
+    public int GetNextY() {
+        return(this.positionY + mvtY);
+    }
+
+    public boolean GetLive() {
+        return (this.alive);
+    }
+
+    public int GetHP(){
+        return(this.HP);
+    }
+
+    public void RobotDeplacement() {
+        this.positionY += mvtY;
+        this.positionX += mvtX;
+    }
+
+    public static Robot CreateRobot(String p_name, String p_version, World p_world, int p_HP, DamageTypes p_dmg) {
+    if (p_name == null || p_name.length() < 5) {
+        System.out.println("Nom trop court");
+        return null;
+    } else {
+        return new Robot(p_name, p_version, p_world, p_HP, p_dmg);
+    }
+    }
+
+    public void ActionMvt(World world) {
+        if (this.positionY + this.mvtY > world.getMinY() && this.positionY + this.mvtY < world.getMaxY() && this.positionX + mvtX > world.getMinX() &&  this.positionX + mvtX < world.getMaxX()) {
+            RobotDeplacement();
+        } else {
+            System.out.println(this.robotName + " a fait demi tour");
+            this.reverseMvt();
+            RobotDeplacement();
+        }
+    }
+
+    
+
+    public void DamageBot(int p_dgt){
+        this.HP = this.HP - p_dgt;
+        if (this.HP <= 0){
+            this.alive = false;
+            this.SetPositionX(11);
+            this.SetPositionY(11);
+            System.out.println(this.robotName + " est mort");
+        }
+    }
+
+    public void HealBot (int p_heal){
+        this.HP = this.HP + p_heal;
+        if(this.HP > this.HPMAX){
+            this.HP = this.HPMAX;
+        }
+    }
+
+    public void reverseMvt(){
+        this.mvtX = 0 - this.mvtX;
+        this.mvtY = 0 - this.mvtY;
+    }
+
+
+    public void RobotAttack (Robot p_cible){
+        if (p_cible.DmgType == DamageTypes.MAGIQUE && this.DmgType == DamageTypes.MAGIQUE) {
+            System.out.println("Les deux robots sont magiques, les dégats s'annulent !");
+        } else if (p_cible.DmgType == DamageTypes.POSITRONNIQUE && this.DmgType == DamageTypes.POSITRONNIQUE) {
+            p_cible.DamageBot(this.Damage*2);
+        } else {
+            p_cible.DamageBot(this.Damage);
+        }
+    }
+
+
+}
+
+
+
+
