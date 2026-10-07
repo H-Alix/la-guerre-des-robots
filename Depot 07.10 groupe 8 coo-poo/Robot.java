@@ -26,6 +26,13 @@ public class Robot {
         this.positionY = (int) (Math.random() * 21) - 10;
     }
 
+    public void SetmvtX(int p_mvt){
+        this.mvtX = p_mvt;
+    }
+
+    public void SetmvtY(int p_mvt){
+        this.mvtY = p_mvt;
+    }    
     
     public void RobotDesc(){
         System.out.println("Robot name : " + this.robotName);
