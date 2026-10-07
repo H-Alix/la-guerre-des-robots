@@ -1,13 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class World {
-    private final int minX;
-    private final int maxX;
-    private final int minY;
-    private final int maxY;
-    private final List<Robot> listRobots = new ArrayList<>();
-
+    private int minX;
+    private int maxX;
+    private int minY;
+    private int maxY;
     public World(int minX, int maxX, int minY, int maxY) {
         this.minX = minX;
         this.maxX = maxX;
@@ -27,33 +22,4 @@ public class World {
     public int getMaxY() {
         return maxY;
     }
-
-    public void LaunchWar(){//World world) {
-        int Xcoords;
-        int Ycoords;
-
-            for (Robot robot : listRobots){
-                Robot Cible = null;
-                Xcoords = robot.GetNextX();
-                Ycoords = robot.GetNextX();
-                for (Robot robotcible : listRobots){
-                    if (robotcible.GetPositionX() == Xcoords && robotcible.GetPositionY() == Ycoords){
-                        Cible = robotcible;
-                        break;
-                    }
-                }
-                // Integrer attauqe
-                robot.ActionMvt(this);
-            }
-    }
-
-    public void AddRobot(Robot robot){
-        listRobots.add(robot);
-    }
-
-    public List<Robot> GetListRobots (){
-        return(this.listRobots);
-    }
-
 }
-
