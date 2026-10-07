@@ -1,16 +1,18 @@
+
 public class Main
 {
     public static void main(String[] args){
         World Monde1 = new World(-10, 10, -10, 10);
-        Robolix Robot1 = Robolix.CreateRobolix("Devastator", "1.12", Monde1, 10, DamageTypes.MAGIQUE);
-        Robot Robot2 = Robot.CreateRobot("STOMPA", "117", Monde1, 10, DamageTypes.PHYSIQUE);
+        Robolix Robot1 = Robolix.CreateRobolix("Devastator", "1.12", Monde1, 10, DamageTypes.POSITRONNIQUE);
+        RobolixV2 Robot2 = RobolixV2.CreateRobolixV2("STOMPA", "117", Monde1, 10, DamageTypes.POSITRONNIQUE);
 
   
-
+        Bonus bonus1 = new Bonus(Monde1);
+        Bonus bonus2 = new Bonus(Monde1);
+        Bonus bonus3 = new Bonus(Monde1);
+        Bonus bonus4 = new Bonus(Monde1);
         Monde1.LaunchWar();
-        for (int i = 0; i < 10; i++) {
-            Robot1.ActionMvt(Monde1);
-            Robot2.ActionMvt(Monde1);
-        }
+
+        
     }
 }
