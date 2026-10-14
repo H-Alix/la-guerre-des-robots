@@ -17,6 +17,13 @@ public class World {
         this.maxY = maxY;
     }
 
+    public static World createWolrd (int minX, int maxX, int minY, int maxY) {
+        if (minX < maxX && minY < maxY) {
+            return (new World( minX, maxX, minY, maxY));
+        } else {
+            return(null);
+        }
+    }
    
     public int getMinX() {
         return minX;
