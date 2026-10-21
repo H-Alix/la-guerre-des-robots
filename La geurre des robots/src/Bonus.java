@@ -7,8 +7,8 @@ public class Bonus {
     protected String Heal = "Assets/heal.png";
 
     public Bonus(World p_world){
-        this.positionX = (int) (Math.random() * (Math.abs(p_world.getMaxX()) + Math.abs(p_world.getMinX()))) - (Math.abs(p_world.getMaxX()) + Math.abs(p_world.getMinX()))/2; 
-        this.positionY = (int) (Math.random() * (Math.abs(p_world.getMaxY()) + Math.abs(p_world.getMinY()))) - (Math.abs(p_world.getMaxY()) + Math.abs(p_world.getMinY()))/2;
+        this.positionX = (int) (Math.random() * (Math.abs(p_world.getMaxX()) + Math.abs(p_world.getMinX()))) - (Math.abs(p_world.getMaxX()) - Math.abs(p_world.getMinX()))/2; 
+        this.positionY = (int) (Math.random() * (Math.abs(p_world.getMaxY()) + Math.abs(p_world.getMinY()))) - (Math.abs(p_world.getMaxY()) - Math.abs(p_world.getMinY()))/2;
         this.valeurBonus = (int) (Math.random() * 4);
         p_world.AddBonus(this);
     }
