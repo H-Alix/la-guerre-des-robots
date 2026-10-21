@@ -18,7 +18,7 @@ public class WorldTest {
     }
 
     @Test
-    void testLaunchWarDestructio() {
+    void testLaunchWarDestruction() {
         World monde = new World(-100, 100, -10, 100);   
         Robot robot = Robot.CreateRobot("EvaLemoinee", "v1", monde , 100, DamageTypes.PHYSIQUE);
         Robot robot2 = Robot.CreateRobot("EvaLemoineee", "v1", monde , 1, DamageTypes.POSITRONNIQUE);
@@ -86,11 +86,42 @@ public class WorldTest {
     @Test
     void testAddBonus() {
         World monde = new World(-100, 100, -10, 100);   
-        Robot robot = Robot.CreateRobot("EvaLemoinee", "v1", monde , 100, DamageTypes.PHYSIQUE);
-        Robot robot2 = Robot.CreateRobot("EvaLemoineee", "v1", monde , 100, DamageTypes.POSITRONNIQUE);
-        Bonus bonus = new Bonus();
+        Bonus bonus = new Bonus(monde);
         monde.AddBonus(bonus);
         assertTrue(monde.GetListBonus().contains(bonus));
         
     }
+    @Test
+    void testCaseBonusHPmax() {
+        World monde = new World(-100, 100, -10, 100);
+        Robot robot = Robot.CreateRobot("EvaLemoinee", "v1", monde , 100, DamageTypes.PHYSIQUE);   
+        robot.SetPositionX(1);
+        robot.SetPositionY(2);
+        Bonus bonus = new Bonus(monde);
+        monde.AddBonus(bonus);
+
+        int hpAvant = robot.GetHP();
+        robot.SetPositionX(bonus.GetX());
+        robot.SetPositionY(bonus.GetY());
+        monde.CaseBonus(robot);
+        assertFalse(robot.GetHP() != hpAvant);
+    }
+
+    @Test
+    void testCaseBonus() {
+        World monde = new World(-100, 100, -10, 100);
+        Robot robot = Robot.CreateRobot("EvaLemoinee", "v1", monde , 100, DamageTypes.PHYSIQUE);   
+        robot.SetPositionX(1);
+        robot.SetPositionY(2);
+        robot.DamageBot(50);
+        Bonus bonus = new Bonus(monde);
+        monde.AddBonus(bonus);
+
+        int hpAvant = robot.GetHP();
+        robot.SetPositionX(bonus.GetX());
+        robot.SetPositionY(bonus.GetY());
+        monde.CaseBonus(robot);
+        assertTrue(robot.GetHP() != hpAvant);
+    }
 }
+
