@@ -37,7 +37,7 @@ public class Bonus {
                     this.positionX = 50;
                     this.positionY = 50;
                 }
-                System.out.println("Le robot " + p_robot.GetRobotName() + " a été soigné de " + this.valeurBonus + " points de vie");
+                System.out.println("Le robot " + p_robot.GetRobotName() + " a ete soigne de " + this.valeurBonus + " points de vie");
         }
     }
 
