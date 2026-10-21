@@ -62,7 +62,7 @@ public class World {
                         robot.ActionMvt(this);
                     }
 
-                } else if(Cible.GetLive() == true ) {
+                } else if(Cible.GetLive() == true && Cible != robot) {
                     robot.RobotAttack(Cible);
                     if(Cible.GetLive()== false && turretOnNextCase(robot) == false){
                         robot.ActionMvt(this);
@@ -116,6 +116,18 @@ public class World {
         }
     }
 
+    public List<Robot> getListRobots() {
+        return listRobots;
+    }
+
+    public List<Bonus> getListBonus() {
+        return listBonus;
+    }
+
+    public List<Turret> getListTurret() {
+        return listTurret;
+    }
+
     public boolean turretOnNextCase(Robot p_r){
         for (Turret turret : listTurret){
             if (p_r.GetNextX() == turret.getPosX() && p_r.GetNextY() == turret.getPosY()){
@@ -124,5 +136,6 @@ public class World {
         }
         return (false);
     }
+
 
 }
