@@ -7,7 +7,6 @@ public class Turret {
     private int reload;
     private int reloadCount = 0;
     private String TurretName;
-    // private DamageTypes dmgtype;
 
     public Turret(int p_r, World p_world, String p_name){
         this.range = p_r;
