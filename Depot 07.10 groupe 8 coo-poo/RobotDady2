@@ -1,7 +1,17 @@
+/** Creation d'un robot
+ * @author Dady Desire
+*/
 public class RobotDady2 extends Robot{
+    /**Nom du createur du robot */
     private static String CreatorName = "Dady";
 
-
+    /** construit un robot  avec un deplacement de (4,-2
+     * @param p_name    le nom du robot
+     * @param p_version la version du robot
+     * @param p_world   le monde dans lequel evolue le robot
+     * @param p_HP      les points de vie initiaux du robot
+     * @param p_dmg     le type de degats infliges par le robot
+    ) */
     public RobotDady2(String p_name, String p_version, World p_world, int p_HP, DamageTypes p_dmg){
         super(p_name, p_version, p_world, p_HP, p_dmg);
         this.mvtX = 4;
@@ -9,7 +19,19 @@ public class RobotDady2 extends Robot{
     }
 
     
-
+     /**
+     * Cree un robot Dady2 apres avoir verifie la validite de son nom.
+     *
+     * Le nom doit contenir au moins 5 caracteres. Sinon, un message
+     * d'erreur est affiche et aucun robot n'est cree.
+     *
+     * @param p_name    le nom du robot,il doit etre non nul et avec au moins 5 caracteres
+     * @param p_version la version du robot
+     * @param p_world   le monde dans lequel evolue le robot
+     * @param p_HP      les points de vie du robot
+     * @param p_dmg     le type de degats infliges par le robot
+     * @return le robot est cree, ou ne fait rien si le nom est invalide
+     */
     public static RobotDady2 createRobotDady2(String p_name, String p_version, World p_world, int p_HP, DamageTypes p_dmg) {
     if (p_name == null || p_name.length() < 5) {
         System.out.println("Nom trop court");
