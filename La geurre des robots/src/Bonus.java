@@ -4,7 +4,6 @@ public class Bonus {
     protected int valeurBonus;
     protected int QuantiteBonus;
     private boolean on = true;
-    protected String Heal = "Assets/heal.png";
 
     public Bonus(World p_world){
         this.positionX = (int) (Math.random() * (Math.abs(p_world.getMaxX()) + Math.abs(p_world.getMinX()))) - (Math.abs(p_world.getMaxX()) - Math.abs(p_world.getMinX()))/2; 
@@ -40,10 +39,6 @@ public class Bonus {
                 }
                 System.out.println("Le robot " + p_robot.GetRobotName() + " a été soigné de " + this.valeurBonus + " points de vie");
         }
-    }
-
-    public String GetSpritePath() { 
-        return Heal; 
     }
 
     public int getPositionX() {
@@ -84,12 +79,6 @@ public class Bonus {
 
     public void setOn(boolean on) {
         this.on = on;
-    }
+    }    
 
-    public String getHeal() {
-        return Heal;
-    }
-
-    public void setHeal(String heal) {
-        Heal = heal;
-    }
+}
