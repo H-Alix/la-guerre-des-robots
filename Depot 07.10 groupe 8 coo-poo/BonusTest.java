@@ -20,6 +20,14 @@ public class BonusTest {
         robot.DamageBot(50); 
     }
 
+    @Test
+    public void testBonusDansLeMonde() {
+        assertTrue(bonus.GetX() >= world.getMinX()); 
+        assertTrue(bonus.GetX() <= world.getMaxX());
+
+        assertTrue(bonus.GetY() >= world.getMinY());
+        assertTrue(bonus.GetY() <= world.getMaxY());
+    }
 
     @Test
     public void testAplyEffectsSoigne() {
@@ -40,7 +48,9 @@ public class BonusTest {
     public void testEffetActif() {
         int hpAvant = robot.GetHP();
         bonus.effet(robot);
+        System.err.println(bonus.getQuantiteBonus());
         assertTrue(robot.GetHP() > hpAvant);
+        assertTrue(bonus.QuantiteBonus == 0);
     }
 
     @Test
@@ -48,6 +58,9 @@ public class BonusTest {
         bonus.effet(robot);
         int hpApremierUsage = robot.GetHP();
         bonus.effet(robot);
+        System.err.println(bonus.getQuantiteBonus());
         assertEquals(hpApremierUsage, robot.GetHP());
+        assertTrue(bonus.QuantiteBonus == 0);
     }
 }
+
