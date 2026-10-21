@@ -9,12 +9,12 @@ public class Turret {
     private String TurretName;
     // private DamageTypes dmgtype;
 
-    public Turret(int p_r, World monde, String p_name){
+    public Turret(int p_r, World p_world, String p_name){
         this.range = p_r;
-        this.posX =  (int) (Math.random() * 21) - 10;
-        this.posY =  (int) (Math.random() * 21) - 10;
-        this.world = monde;
-        monde.AddTurrets(this);
+        this.posX =  (int) (Math.random() * (Math.abs(p_world.getMaxX()) + Math.abs(p_world.getMinX()))) - (Math.abs(p_world.getMaxX()) - Math.abs(p_world.getMinX()))/2;
+        this.posY =  (int) (Math.random() * (Math.abs(p_world.getMaxX()) + Math.abs(p_world.getMinX()))) - (Math.abs(p_world.getMaxX()) - Math.abs(p_world.getMinX()))/2;
+        this.world = p_world;
+        p_world.AddTurrets(this);
         this.reload = (int) (Math.random() * 4);
         this.damage = (int) (Math.random() * 6);
         this.TurretName = p_name;
@@ -100,3 +100,4 @@ public class Turret {
     }
     
 }
+
